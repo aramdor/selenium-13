@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
 public class WebDriverUtils {
+    public static int PAGE_LOAD_TIMEOUT_SECONDS = 30;
     private static WebDriver driver;
     private static final String CHROME_WEB_DRIVER_PATH = "Drivers\\chromedriver.exe";
 
