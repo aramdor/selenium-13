@@ -1,6 +1,5 @@
 package tests;
 
-import com.sun.org.glassfish.gmbal.Description;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import common.WebDriverUtils;
@@ -19,8 +18,7 @@ public class OpenBrowserAndURITest {
     }
 
     @Test
-    @Description("Open www.yandex.ru")
-    public void loginPositive() {
+    public void openYandexRu() {
         driver.get("https://www.yandex.ru");
     }
 }
