@@ -13,24 +13,24 @@ import static common.WebDriverUtils.PAGE_LOAD_TIMEOUT_SECONDS;
 import static org.testng.AssertJUnit.assertTrue;
 
 public class LoginPageObject {
-    protected WebDriver driver;
+    private WebDriver driver;
 
     public LoginPageObject(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
-    @FindBy(xpath = ".//*[@id='box-login']//*[@alt='My Store']")
+    @FindBy(xpath = "//*[@id='box-login']//*[@alt='My Store']")
     private WebElement loginPopupLogo;
 
-    @FindBy(xpath = ".//input[@name='username']")
+    @FindBy(xpath = "//input[@name='username']")
     private WebElement usernameTextBox;
 
 
-    @FindBy(xpath = ".//input[@name='password']")
+    @FindBy(xpath = "//input[@name='password']")
     private WebElement passwordTextBox;
 
-    @FindBy(xpath = ".//button[@name='login']")
+    @FindBy(xpath = "//button[@name='login']")
     private WebElement loginButton;
 
     public LoginPageObject getLoginPageAndWaitForLogo() {
@@ -62,6 +62,13 @@ public class LoginPageObject {
         LandingPageObject landingPage = new LandingPageObject(driver);
         landingPage.checkThatItIsLandingPage(true);
         return this;
+    }
+
+    public void loginUnderDefaultAdminAccountAndWaitForLandingPage() {
+        getLoginPageAndWaitForLogo()
+                .inputUsername("admin")
+                .inputPassword("admin")
+                .pressLoginButtonAndWaitForLandingPage();
     }
 
 }
