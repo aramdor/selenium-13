@@ -13,10 +13,10 @@ import static common.WebDriverUtils.PAGE_LOAD_TIMEOUT_SECONDS;
 import static org.testng.AssertJUnit.*;
 
 
-public class LandingPageObject {
+public class LandingPageForAdminObject {
     protected WebDriver driver;
 
-    public LandingPageObject(WebDriver driver) {
+    public LandingPageForAdminObject(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
@@ -27,7 +27,7 @@ public class LandingPageObject {
     @FindBy(xpath = "//*[@id='content']")
     public WebElement mainPage;
 
-    public LandingPageObject checkThatItIsLandingPage(Boolean assertIs) {
+    public LandingPageForAdminObject checkThatItIsLandingPage(Boolean assertIs) {
         try {
         (new WebDriverWait(driver, PAGE_LOAD_TIMEOUT_SECONDS))
                 .until(ExpectedConditions.visibilityOf(appsMenu));}
@@ -41,7 +41,7 @@ public class LandingPageObject {
         return mainPage.findElement(By.xpath(".//h1"));
     }
 
-    public LandingPageObject isHeaderDisplayed() {
+    public LandingPageForAdminObject isHeaderDisplayed() {
         assertTrue("Landing page header is NOT displayed!", getMainPageHeader().isDisplayed());
         return this;
     }

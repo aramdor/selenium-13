@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import tests.admin.leftsidebar.LeftsidebarForLandingPageObject;
 import tests.admin.login.LoginPageObject;
 
-public class LandingPageTest {
+public class LandingPageForAdminTest {
     private WebDriver driver;
     private LoginPageObject loginPage;
     private LeftsidebarForLandingPageObject leftsidebarForLandingPage;

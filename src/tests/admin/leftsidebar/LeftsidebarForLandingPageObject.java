@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import tests.admin.landing.LandingPageObject;
+import tests.admin.landing.LandingPageForAdminObject;
 
 import static org.testng.AssertJUnit.*;
 
@@ -35,7 +35,7 @@ public class LeftsidebarForLandingPageObject {
     }
 
     public LeftsidebarForLandingPageObject clickThroughAllSidebarElements() {
-        LandingPageObject landingPage = new LandingPageObject(driver);
+        LandingPageForAdminObject landingPage = new LandingPageForAdminObject(driver);
         for (int sidebarElementId = 0; sidebarElementId < sidebarElements.size(); sidebarElementId++) {
             sidebarElements.get(sidebarElementId).click();
             checkThatElementIsActive(sidebarElements.get(sidebarElementId).getAttribute("class"), sidebarElementId);
