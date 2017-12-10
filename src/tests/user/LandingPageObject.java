@@ -46,7 +46,7 @@ public class LandingPageObject {
         }
         System.out.println("Most popular products block:");
         for (int productId = 0; productId < listOfMostPopularProducts.size(); productId++) {
-            assertTrue("Product " + productId + " has NO sticker!!", listOfMostPopularProducts.get(productId).findElement(By.xpath(stickerXpath)).isDisplayed());
+            assertEquals("Product " + productId + " has NO sticker or too many stickers!!", 1, listOfMostPopularProducts.get(productId).findElements(By.xpath(stickerXpath)).size());
             System.out.println("Product " + productId + " has sticker: " + listOfMostPopularProducts.get(productId).findElement(By.xpath(stickerXpath)).getText());
         }
         return this;
@@ -58,8 +58,9 @@ public class LandingPageObject {
         }
         System.out.println("Campaign products block:");
         for (int productId = 0; productId < listOfProductsInCampaign.size(); productId++) {
-            assertTrue("Product " + productId + " has NO sticker!!", listOfProductsInCampaign.get(productId).findElement(By.xpath(stickerXpath)).isDisplayed());
+            assertEquals("Product " + productId + " has NO sticker or too many stickers!!", 1, listOfProductsInCampaign.get(productId).findElements(By.xpath(stickerXpath)).size());
             System.out.println("Product " + productId + " has sticker: " + listOfMostPopularProducts.get(productId).findElement(By.xpath(stickerXpath)).getText());
+
         }
         return this;
     }
@@ -70,7 +71,7 @@ public class LandingPageObject {
         }
         System.out.println("Latest products block:");
         for (int productId = 0; productId < listOfLatestProducts.size(); productId++) {
-            assertTrue("Product " + productId + " has NO sticker!!", listOfLatestProducts.get(productId).findElement(By.xpath(stickerXpath)).isDisplayed());
+            assertEquals("Product " + productId + " has NO sticker or too many stickers!!", 1, listOfLatestProducts.get(productId).findElements(By.xpath(stickerXpath)).size());
             System.out.println("Product " + productId + " has sticker: " + listOfMostPopularProducts.get(productId).findElement(By.xpath(stickerXpath)).getText());
         }
         return this;
