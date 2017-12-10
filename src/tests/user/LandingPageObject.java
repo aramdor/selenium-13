@@ -27,7 +27,6 @@ public class LandingPageObject {
     private WebElement headerIcon;
 
     private static final String xpathContentBlock = "//div[@class='content']";
-//    private static final String xpathProductInsideBlock = "//ul[@class='listing-wrapper products']/li";
     private static final String xpathProductInsideBlock = "//li[contains(@class, 'product')]";
 
     @FindBy(xpath = "//*[@id='box-most-popular']" + xpathProductInsideBlock)
