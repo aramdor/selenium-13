@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import tests.admin.landing.LandingPageForAdminObject;
+import tests.admin.landing.LandingPageForAdminPageObject;
 
 import static common.WebDriverUtils.PAGE_LOAD_TIMEOUT_SECONDS;
 import static org.testng.AssertJUnit.assertTrue;
@@ -40,7 +40,7 @@ public class LoginPageObject {
                     .until(ExpectedConditions.visibilityOf(loginPopupLogo));
         } catch (WebDriverException ex) {
             System.out.println("It is NOT admin login page. Let's check is it landing page!");
-            LandingPageForAdminObject landingPage = new LandingPageForAdminObject(driver);
+            LandingPageForAdminPageObject landingPage = new LandingPageForAdminPageObject(driver);
             landingPage.checkThatItIsLandingPage(true);
             assertTrue("Landing page was opened instead of login pop-up!", false);
         }
@@ -59,7 +59,7 @@ public class LoginPageObject {
 
     public LoginPageObject pressLoginButtonAndWaitForLandingPage() {
         loginButton.click();
-        LandingPageForAdminObject landingPage = new LandingPageForAdminObject(driver);
+        LandingPageForAdminPageObject landingPage = new LandingPageForAdminPageObject(driver);
         landingPage.checkThatItIsLandingPage(true);
         return this;
     }

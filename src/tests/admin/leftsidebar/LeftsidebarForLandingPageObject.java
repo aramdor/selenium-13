@@ -5,11 +5,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import tests.admin.landing.LandingPageForAdminObject;
-
-import static org.testng.AssertJUnit.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import tests.admin.landing.LandingPageForAdminPageObject;
 
 import java.util.List;
+
+import static common.WebDriverUtils.PAGE_LOAD_TIMEOUT_SECONDS;
+import static org.testng.AssertJUnit.assertEquals;
+import static tests.admin.landing.LandingPageForAdminPageObject.countriesForm;
+import static tests.admin.landing.LandingPageForAdminPageObject.geoZonesForm;
 
 public class LeftsidebarForLandingPageObject {
     private WebDriver driver;
@@ -35,7 +40,7 @@ public class LeftsidebarForLandingPageObject {
     }
 
     public LeftsidebarForLandingPageObject clickThroughAllSidebarElements() {
-        LandingPageForAdminObject landingPage = new LandingPageForAdminObject(driver);
+        LandingPageForAdminPageObject landingPage = new LandingPageForAdminPageObject(driver);
         for (int sidebarElementId = 0; sidebarElementId < sidebarElements.size(); sidebarElementId++) {
             sidebarElements.get(sidebarElementId).click();
             checkThatElementIsActive(sidebarElements.get(sidebarElementId).getAttribute("class"), sidebarElementId);
@@ -54,5 +59,23 @@ public class LeftsidebarForLandingPageObject {
             }
         }
         return this;
+    }
+
+    @FindBy(xpath = "//li[@id='app-']//span[text()='Countries']")
+    private WebElement countries;
+
+    public void selectCountriesAndWait() {
+        countries.click();
+        (new WebDriverWait(driver, PAGE_LOAD_TIMEOUT_SECONDS))
+                .until(ExpectedConditions.visibilityOf(countriesForm));
+    }
+
+    @FindBy(xpath = "//li[@id='app-']//span[text()='Geo Zones']")
+    private WebElement geoZones;
+
+    public void selectGeoZonesAndWait() {
+        geoZones.click();
+        (new WebDriverWait(driver, PAGE_LOAD_TIMEOUT_SECONDS))
+                .until(ExpectedConditions.visibilityOf(geoZonesForm));
     }
 }
