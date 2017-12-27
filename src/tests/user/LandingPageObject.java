@@ -12,7 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 import static common.WebDriverUtils.PAGE_LOAD_TIMEOUT_SECONDS;
-import static org.testng.AssertJUnit.*;
+import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertTrue;
 
 
 public class LandingPageObject {
@@ -40,6 +41,14 @@ public class LandingPageObject {
 
     private String stickerXpath = ".//div[contains(@class, 'sticker')]";
 
+    @FindBy(xpath = "//div[@id='box-campaigns']")
+    private WebElement campaigns;
+
+    private String productNameXpath = ".//*[@class='name']";
+    private String productManufacturerXpath = ".//*[@class='manufacturer']";
+    private String productRegularPriceXpath = ".//*[@class='regular-price']";
+    private String productCampaignPriceXpath = ".//*[@class='campaign-price']";
+
     public LandingPageObject checkThatAllMostPopularProductsContntainsStickers() {
         if (listOfMostPopularProducts.size() == 0) {
             assertTrue("There are NO products in Most popular block", false);
@@ -65,7 +74,7 @@ public class LandingPageObject {
         return this;
     }
 
-    public LandingPageObject checkThatAllLatestProductsContntainsStickers() {
+    public void checkThatAllLatestProductsContntainsStickers() {
         if (listOfLatestProducts.size() == 0) {
             assertTrue("There are NO products in Latest products block", false);
         }
@@ -74,7 +83,6 @@ public class LandingPageObject {
             assertEquals("Product " + productId + " has NO sticker or too many stickers!!", 1, listOfLatestProducts.get(productId).findElements(By.xpath(stickerXpath)).size());
             System.out.println("Product " + productId + " has sticker: " + listOfMostPopularProducts.get(productId).findElement(By.xpath(stickerXpath)).getText());
         }
-        return this;
     }
 
     public LandingPageObject getLandingPageAndWaitForTitle() {
@@ -87,5 +95,73 @@ public class LandingPageObject {
         }
         return this;
     }
+
+    ////////////////////////////////////////////////////////Homework 10 methods///////////////////////////////////////////////////
+
+    private WebElement getProductData(int productId, String xpath) {
+        if (listOfProductsInCampaign.size() == 0) {
+            assertTrue("There are NO products in Campaign block", false);
+        }
+        return listOfProductsInCampaign.get(productId).findElement(By.xpath(xpath));
+    }
+
+    public String getProductName(int productId) {
+        return getProductData(productId, productNameXpath).getText();
+    }
+
+    public String getProductManufacturer(int productId) {
+        return getProductData(productId, productManufacturerXpath).getText();
+    }
+
+    public String getProductRegularPrice(int productId) {
+        return getProductData(productId, productRegularPriceXpath).getText();
+    }
+
+    public String getProductCampaignPrice(int productId) {
+        return getProductData(productId, productCampaignPriceXpath).getText();
+    }
+
+    public void clickOnProductAndWaitForProductDetailsPage(int productId) {
+        listOfProductsInCampaign.get(productId).click();
+        ProductDetailsPageObject productDetailsPage = new ProductDetailsPageObject(driver);
+        (new WebDriverWait(driver, PAGE_LOAD_TIMEOUT_SECONDS))
+                .until(ExpectedConditions.visibilityOf(productDetailsPage.productDetailsBox));
+    }
+
+
+    private String getCSSvalue(int productId, String xpath, String css) {
+        return getProductData(productId, xpath).getCssValue(css);
+    }
+
+    public LandingPageObject isProductRegularPriceGrey(int productId) {
+        CommonStyleCheckMethods.isThisColorGrey(getCSSvalue(productId, productRegularPriceXpath, "color"));
+        return this;
+    }
+
+    public LandingPageObject isProductRegularPriceStrikeThrough(int productId) {
+        assertTrue("Strikethrough is NOT applied!", getCSSvalue(productId, productRegularPriceXpath, "text-decoration").contains("line-through"));
+        return this;
+    }
+
+
+    public LandingPageObject checkThatBoldIsNotAppliedOnProductRegularPrice(int productId) {
+        CommonStyleCheckMethods.checkThatBoldIsNotApplied(getProductData(productId, productRegularPriceXpath).getCssValue("font-weight"));
+        return this;
+    }
+
+    public LandingPageObject isProductCampaignPriceColorRed(int productId) {
+        CommonStyleCheckMethods.isThisColorRed(getProductData(productId, productCampaignPriceXpath).getCssValue("color"));
+        return this;
+    }
+
+    public LandingPageObject isProductCampaignPriceBold(int productId) {
+        CommonStyleCheckMethods.isThisFontBold(getProductData(productId, productCampaignPriceXpath).getCssValue("font-weight"));
+        return this;
+    }
+
+    public void isCampaignPriceFontBiggerThanRegularPrice(int productId) {
+        CommonStyleCheckMethods.checkThatFontIsBigger(getProductData(productId, productCampaignPriceXpath).getCssValue("font-size"), getProductData(productId, productRegularPriceXpath).getCssValue("font-size"));
+    }
+
 }
 
