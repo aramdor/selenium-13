@@ -25,7 +25,7 @@ public class Homework10Edge {
                 .getLandingPageAndWaitForTitle();
     }
 
-    @Test
+    @Test(groups = {"homework_10"})
     public void compareProductNameAndPrices() {
         ProductPropertiesObject productOnLandingPage = new ProductPropertiesObject();
         ProductPropertiesObject productOnDetailsPage = new ProductPropertiesObject();
@@ -49,7 +49,7 @@ public class Homework10Edge {
         System.out.println("productOnDetailsPage " + productOnDetailsPage.toString());
     }
 
-    @Test
+    @Test(groups = {"homework_10"})
     public void checkProductStyleOnLandingPage() {
         landingPage
                 .isProductRegularPriceStrikeThrough(productId)
@@ -60,7 +60,7 @@ public class Homework10Edge {
                 .isCampaignPriceFontBiggerThanRegularPrice(productId);
     }
 
-    @Test
+    @Test(groups = {"homework_10"})
     public void checkProductStyleOnProductDetailsPage() {
         landingPage
                 .clickOnProductAndWaitForProductDetailsPage(productId);
