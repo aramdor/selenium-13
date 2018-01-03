@@ -10,7 +10,7 @@ import tests.admin.login.LoginPageObject;
 
 import static org.testng.AssertJUnit.assertTrue;
 
-public class homework9 {
+public class homework9Test {
     private WebDriver driver;
     private LoginPageObject loginPage;
     private LeftsidebarForLandingPageObject leftsidebarForLandingPage;
