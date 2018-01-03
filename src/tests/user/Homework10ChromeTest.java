@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-public class Homework10Chrome {
+public class Homework10ChromeTest {
     private WebDriver driver;
     private LandingPageObject landingPage;
     private ProductDetailsPageObject productDetailsPage;
@@ -16,9 +16,9 @@ public class Homework10Chrome {
 
     @BeforeMethod
     public void setup() {
-//        driver = WebDriverUtils.launchChromeDriver();
+        driver = WebDriverUtils.launchChromeDriver();
 //        driver = WebDriverUtils.launchFirefoxDriver();
-        driver = WebDriverUtils.launchEdgeDriver();
+//        driver = WebDriverUtils.launchEdgeDriver();
         landingPage = new LandingPageObject(driver);
         productDetailsPage = new ProductDetailsPageObject(driver);
         landingPage

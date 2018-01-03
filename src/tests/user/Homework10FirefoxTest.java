@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-public class Homework10Firefox {
+public class Homework10FirefoxTest {
     private WebDriver driver;
     private LandingPageObject landingPage;
     private ProductDetailsPageObject productDetailsPage;

@@ -2,23 +2,20 @@ package tests.user;
 
 import common.WebDriverUtils;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
-import tests.admin.leftsidebar.LeftsidebarForLandingPageObject;
-import tests.admin.login.LoginPageObject;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class LandingPageTest {
     private WebDriver driver;
     private LandingPageObject landingPage;
 
-    @BeforeTest
+    @BeforeMethod
     public void setup() {
         driver = WebDriverUtils.launchChromeDriver();
         landingPage = new LandingPageObject(driver);
     }
 
-    @Test
+//    @Test
     public void goThrougtTheListOfLeftSidebarItems() {
         landingPage
                 .getLandingPageAndWaitForTitle()
@@ -27,7 +24,7 @@ public class LandingPageTest {
                 .checkThatAllLatestProductsContntainsStickers();
     }
 
-    @AfterTest
+    @AfterMethod
     public void tearDown() {
         driver.quit();
     }
