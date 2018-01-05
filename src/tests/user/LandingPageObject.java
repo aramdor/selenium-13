@@ -38,7 +38,7 @@ public class LandingPageObject {
     private List<WebElement> listOfProductsInCampaign;
 
     @FindBy(xpath = "//*[@id='box-latest-products']" + xpathProductInsideBlock)
-    private List<WebElement> listOfLatestProducts;
+    public List<WebElement> listOfLatestProducts;
 
     private String stickerXpath = ".//div[contains(@class, 'sticker')]";
 
@@ -211,6 +211,20 @@ public class LandingPageObject {
                 .until(ExpectedConditions.visibilityOf(logoutButton));
         return this;
     }
+
+
+    //////////////////////////////////Homework 13//////////////////////////////////
+    public LandingPageObject openOneOfTheLatestProducts(int productId) {
+        if (listOfLatestProducts.size() < productId) {
+            assertTrue("THere is NO such product", false);
+        }
+        listOfLatestProducts.get(productId).click();
+        ProductDetailsPageObject productDetailsPage = new ProductDetailsPageObject(driver);
+        (new WebDriverWait(driver, PAGE_LOAD_TIMEOUT_SECONDS))
+                .until(ExpectedConditions.visibilityOf(productDetailsPage.productDetailsBox));
+        return this;
+    }
+
 
 }
 
