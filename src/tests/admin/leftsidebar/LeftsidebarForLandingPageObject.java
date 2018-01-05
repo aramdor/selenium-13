@@ -78,4 +78,18 @@ public class LeftsidebarForLandingPageObject {
         (new WebDriverWait(driver, PAGE_LOAD_TIMEOUT_SECONDS))
                 .until(ExpectedConditions.visibilityOf(geoZonesForm));
     }
+
+    /////////////////////////////////Homework 12/////////////////////////////////
+    @FindBy(xpath = "//*[@id='sidebar']//*[@href='http://localhost/litecart/admin/?app=catalog&doc=catalog']")
+    private WebElement catalog;
+
+    @FindBy(xpath = "//a[@href='http://localhost/litecart/admin/?category_id=0&app=catalog&doc=edit_product']")
+    private WebElement addNewProductButton;
+
+    public LeftsidebarForLandingPageObject openCatalogAndWait() {
+        catalog.click();
+        (new WebDriverWait(driver, PAGE_LOAD_TIMEOUT_SECONDS))
+                .until(ExpectedConditions.visibilityOf(addNewProductButton));
+        return this;
+    }
 }
