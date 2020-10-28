@@ -12,5 +12,8 @@
 4. In case you don't need to update dependencies use
 ``` mvn test ```
 
-1|2|3
-text|another text|3 
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
