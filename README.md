@@ -12,5 +12,5 @@
 4. In case you don't need to update dependencies use
 ``` mvn test ```
 
-|1|2|3|
-|text|another text| 
+1|2|3
+text|another text|3 
